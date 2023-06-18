@@ -1,6 +1,6 @@
 import { readFile, existsSync } from 'node:fs';
 
-const read = async (fileName) => {
+export const read = async (fileName) => { 
     if(!existsSync(fileName)) {
         throw new Error('FS operation failed');
     } else {
@@ -14,4 +14,4 @@ const read = async (fileName) => {
     }
 };
 
-await read('./files/fileToRead.txt');
+await read('src/fs/files/fileToRead.txt');
