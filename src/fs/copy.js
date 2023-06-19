@@ -1,4 +1,5 @@
 import { existsSync, cp } from 'node:fs';
+import { resolve } from 'node:path';
 
 const copy = async (dir) => {
     const newDir = `${dir}_copy`;
@@ -13,5 +14,5 @@ const copy = async (dir) => {
         });
     }
 };
-
-await copy('./files');
+const directoryPath = resolve('src/fs/files')
+await copy(directoryPath);
