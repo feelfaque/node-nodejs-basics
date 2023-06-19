@@ -1,4 +1,5 @@
 import { readFile, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 export const read = async (fileName) => { 
     if(!existsSync(fileName)) {
@@ -14,4 +15,5 @@ export const read = async (fileName) => {
     }
 };
 
-await read('src/fs/files/fileToRead.txt');
+const filePath = resolve('src/fs/files/fileToRead.txt');
+await read(filePath);
