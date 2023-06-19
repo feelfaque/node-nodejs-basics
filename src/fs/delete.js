@@ -1,4 +1,5 @@
 import { rm, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const remove = async (path) => {
     if(!existsSync(path)) {
@@ -10,4 +11,5 @@ const remove = async (path) => {
     }
 };
 
-await remove('./files/fileToremove.txt');
+const filePath = resolve('src/fs/files/fileToremove.txt');
+await remove(filePath);
