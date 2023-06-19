@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile } from 'node:fs';
-const fileToHash = "src/hash/files/fileToCalculateHashFor.txt";
+import { resolve } from "node:path";
+const fileToHash = resolve("src/hash/files/fileToCalculateHashFor.txt");
 
 const calculateHash = async () => {
         readFile(fileToHash, 'utf8', (err, data) => {
