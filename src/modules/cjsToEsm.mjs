@@ -1,21 +1,28 @@
-const path = require('path');
-const { release, version } = require('os');
-const { createServer: createServerHttp } = require('http');
-require('./files/c');
+import { sep, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+import { release, version } from 'node:os';
+import { createServer as createServerHttp } from 'node:http';
+import './files/c.js';
+import jsonA from './files/a.json' assert {type: 'json'};
+import jsonB from './files/b.json' assert {type: 'json'};
+
 
 const random = Math.random();
 
 let unknownObject;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 if (random > 0.5) {
-    unknownObject = require('./files/a.json');
+    unknownObject = jsonA;
 } else {
-    unknownObject = require('./files/b.json');
+    unknownObject = jsonB;
 }
 
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
-console.log(`Path segment separator is "${path.sep}"`);
+console.log(`Path segment separator is "${sep}"`);
 
 console.log(`Path to current file is ${__filename}`);
 console.log(`Path to current directory is ${__dirname}`);
@@ -26,14 +33,12 @@ const myServer = createServerHttp((_, res) => {
 
 const PORT = 3000;
 
-console.log(unknownObject);
-
 myServer.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
     console.log('To terminate it, use Ctrl+C combination');
 });
 
-module.exports = {
+export default {
     unknownObject,
     myServer,
 };
