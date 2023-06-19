@@ -1,5 +1,16 @@
+import { createHash } from "node:crypto";
+import { readFile } from 'node:fs';
+import { resolve } from "node:path";
+const fileToHash = resolve("src/hash/files/fileToCalculateHashFor.txt");
+
 const calculateHash = async () => {
-    // Write your code here 
+        readFile(fileToHash, 'utf8', (err, data) => {
+            if(err) {
+                throw new Error(err);
+            }
+            const hash = createHash('sha256').update(data).digest('hex');
+            console.log(hash);
+        });
 };
 
 await calculateHash();
