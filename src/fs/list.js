@@ -1,4 +1,5 @@
 import { existsSync, readdir } from 'node:fs';
+import { resolve } from 'node:path';
 
 const list = async (folder) => {
    if(!existsSync(folder)) {
@@ -14,4 +15,5 @@ const list = async (folder) => {
    }
 };
 
-await list('./files');
+const folderPath = resolve('src/fs/files');
+await list(folderPath);
