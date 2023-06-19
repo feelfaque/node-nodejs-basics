@@ -1,7 +1,8 @@
 import { writeFile, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const create = async (text) => {
-    const path = './files/fresh.txt';
+    const path = resolve('src/fs/files/fresh.txt');
 
     if (existsSync(path)) {
         throw new Error('FS operation failed');
